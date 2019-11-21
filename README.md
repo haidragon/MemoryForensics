@@ -34,4 +34,4 @@
 ## 第四节 linux 进程/模块隐藏技术
 ## 第五节 linux 内核hooks
 ## 第六节 linux 内核重载技术
-## 第七节 linux kvm虚拟化技术
+## 第七节 intel-VT(kvm)虚拟化技术
