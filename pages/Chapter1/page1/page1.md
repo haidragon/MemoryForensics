@@ -11,4 +11,6 @@
 	检查是否存在制作的profile，输入命令python vol.py --info|grep Linux，能够看到如图1所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page1/images/LinuxUbuntu1404x64.png)
 	图1
-
+	如果没有可以手动解压出来(Volatility源码中有自动解压操作),Volatility环境已经搭建完成，现在我们要做的是内存镜像提取，这里我用的一个开源的驱动，输入命令：
+	git clone https://github.com/504ensicsLabs/LiME.git
+	然后编译，用法作者已经有写,
