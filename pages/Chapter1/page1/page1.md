@@ -23,9 +23,11 @@ python vol.py --info|grep Linux
 ```
 	能够看到如图1所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page1/images/LinuxUbuntu1404x64.png)
-	图1
+图1
 	如果没有可以手动解压出来(Volatility源码中有自动解压操作),Volatility环境已经搭建完成，现在我们要做的是内存镜像提取，这里我用的一个开源的驱动，输入命令：
-	git clone https://github.com/504ensicsLabs/LiME.git
+```
+git clone https://github.com/504ensicsLabs/LiME.git
+```
 	然后编译，用法作者已经有写,LiME提供了3种获取内存格式:raw、padded和lime。raw格式是指获取全部物理内存 段的物理内存;padded 是指除获取物理内存段物理内存外，其他段以0填充;lime除获取物理内存外，每段内存段前附加了格式为lime_header结构体的数据。例如这里：
 ```
 sudo insmod ./lime-4.4.0-142-generic.ko "path=./mem.lime format=lime"
