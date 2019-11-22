@@ -65,7 +65,7 @@ cmds = registry.get_plugin_classes(commands.Command, lower = True)
 ```
 好了开始可以调试了，我们先在这行代码上下段然后查看cmds是什么，如图3所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page3/images/3cmds.png)
-发现全是一些类，我们随便找到类比如linux_plthook,进入源码如图4所示。
+发现全是一些类，我们随便找个类比如linux_plthook,进入源码如图4所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page3/images/linuxplthook.png)
 然后翻父类，得到的继承链是linux_plthook -> linux_pslist -> AbstractLinuxCommand -> Command ,而我们要看的那行代码是获取所有的子类，因些也就是每一个插件全是Command的子类，同时每种系统都有一个抽象类，linux为AbstractLinuxCommand，设计思路是如图5所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page3/images/5linux.jpg)
@@ -99,7 +99,7 @@ cmds = registry.get_plugin_classes(commands.Command, lower = True)
             command.execute()
 ...
 ```
-通过上面我们知道cmds保存的是所有插件，因为module又是通过config.args获取的，先直接告诉大家module就是输入的参数只匹配一个，我们动态调试下如图5与6所示。
+通过上面我们知道cmds保存的是所有插件，因为module又是通过config.args获取的，这里告诉大家module就是输入的参数只匹配第一个，我们动态调试下如图5与6所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page3/images/mod1.png)
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page3/images/mod2.png)
-然后去与cmds里面所有类比较，然后传入配置文件初始化它，怎么初始化的在下一节说。
+然后去与cmds里面所有类比较，同时传入配置文件初始化它，怎么初始化的在下一节说。
