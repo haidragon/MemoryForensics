@@ -161,11 +161,11 @@ def walk_neighbor(self, neighbor):
     return ret
 ```
 首先遍历以neighbor结构为头部的链表。walk_internal_list("neighbour", "next", neighbor)返回一个迭代器，第一次迭代时会返回neighbor自身，即头节点。其代码如下：
-
+```
 # list_start = neighbor
 # struct_name = neighbour
 # list_member = next
-```
+
 def walk_internal_list(struct_name, list_member, list_start, addr_space = None):
     if not addr_space:
         addr_space = list_start.obj_vm
