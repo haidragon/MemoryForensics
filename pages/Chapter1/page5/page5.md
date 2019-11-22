@@ -28,6 +28,7 @@
         self.run_imports()
 ```
 这个意思很明确就是把指定目录下的所有py文件拉起来导入起来，我们下断看看如图式1所示。
+![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page5/images/1.png)
 果然全是，那我们进入linux的源码，打开volatility/plugins/overlays/linux/linux.py文件，有几行代码是加载文件就会执行的，代码如下：
 ```
 
@@ -51,4 +52,5 @@ class linux_file(obj.CType):
 
 ```
 这个代码我们看到过，他主要就是把对应的profile名称做一个类初始化，下断看下堆栈如图2所示。
+![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page5/images/2.png)
 profile加载就是这么个过程。
