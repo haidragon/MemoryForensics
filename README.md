@@ -15,8 +15,8 @@
 ## 第一节 linux进程遍历 
 ## 第二节 linux syscall遍历 
 ## 第三节 linux 模块遍历 
-## 第四节 linux 注册表(属性)遍历
-## 第五节 linux 网络连接相关
+## 第四节 linux 环境变量遍历
+## 第五节 linux arp插件 https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter2/page5.md
 # 第三章 linux内核部分下(volatility 插件)
 ## 第一节 inline_kernel 检测
 ## 第二节 内核apihooks检测 
