@@ -1,5 +1,5 @@
 # 第一节linux内存取证工作流程
-	第一步先安装一个必要的工具有：
+	第一步先安装一些工具有：
 ```
 pip install distorm3
 pip install yara
@@ -32,7 +32,7 @@ git clone https://github.com/504ensicsLabs/LiME.git
 ```
 sudo insmod ./lime-4.4.0-142-generic.ko "path=./mem.lime format=lime"
 ```
-	最后我们就开始分析了，可能查看Volatility运行哪些插件，运行命令：
+	最后我们就开始分析了，可以查看Volatility运行哪些插件，运行命令：
 ```
 python vol.py --info | grep -i linux_
 ```
