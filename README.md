@@ -22,6 +22,8 @@
 ## 第二节 内核apihooks检测 
 ## 第三节 linux 进程隐藏检测 
 ## 第四节 linux 模块隐藏检测
+* https://www.freebuf.com/articles/system/54263.html
+* https://blog.csdn.net/u011130578/article/details/46523949
 ## 第五节 linux netfiter检测
 # 第四章 linux内核rootkit实现部分  
 ## 第一节 linux 内核双机调试开发环境搭建
