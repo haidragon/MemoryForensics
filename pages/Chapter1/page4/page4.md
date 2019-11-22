@@ -3,7 +3,7 @@
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/1cof.png)
 我们继续看他调用的父类构造函数，如图2所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/2cof.png)
-发现原来在再上面 下断动态调试下，看下调用堆栈，分析没错如图3所示。
+发现原来在父类，再在上面下断动态调试下，看下调用堆栈，我们分析没错如图3所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/3cof.png)
 那插件是怎么调用起来的呢，我们回到最上面的入口，看如下代码：
 ```
@@ -20,12 +20,12 @@
 
             command.execute()
 ```
-我们发现它是找到对应的插件类执行execute函数，那这个execute函数不要想了肯定是一个父类的函数，我们翻command源码看看，如图3所示。
+我们发现它是找到对应的插件类执行execute函数，那这个execute函数不要想了肯定是一个父类的函数(多态)，我们翻command源码看看，如图3所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/comd1.png)
 发现execute函数最终调用的是上面没有实现的calculate函数(虚拟函数),到这里肯定能猜到所有插件的入口就是calculate函数的实现，下断看下调用堆栈如图4所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/comd2.png)
 到这里并没有结束，还有一个很重要的事情就是怎么获取profile的，猜想这个一般应该放在配置文件中，看看有没有如图5所示。
-
+![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/5.png)
 发现什么也没有，那放到哪呢，没什么好的分析思路，继续从插件入口下手，一开始就调用一个set_plugin_members函数，进去看看，调用了 obj_ref.addr_space = utils.load_as(obj_ref._config)，继续进入，又发现了熟悉的地方是遍历BaseAddressSpace子类操作，如图6所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/6class.png)
 继续看BaseAddressSpace类发现了一行代码self._set_profile(config.PROFILE),如图7所示。
