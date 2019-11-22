@@ -23,7 +23,7 @@
 ## 第三节 linux 进程隐藏检测 
 ## 第四节 linux 模块隐藏检测
 ## 第五节 linux netfiter检测
-# 第四章 linux内核rootkit实现部分 (看情况公开）
+# 第四章 linux内核rootkit实现部分  
 ## 第一节 linux 内核双机调试开发环境搭建
 ## 第二节 linux 模块注入技术 
 ## 第三节 linux netfiter开发 
