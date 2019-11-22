@@ -10,6 +10,5 @@ class linux_test_plugin(linux_common.AbstractLinuxCommand):
         print 'linux_test_plugin'
 ```
 把参数修改成linux_test_plugin下断运行，如图1所示。
-
-
+![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page6/1.png)
 
