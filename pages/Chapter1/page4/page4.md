@@ -30,17 +30,17 @@
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/6class.png)
 继续看BaseAddressSpace类发现了一行代码self._set_profile(config.PROFILE),如图7所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/7file.png)
-但是还是有点迷，没关系下断动态调试下，发现就是set我们传进去的如图8所示。
+但是还是有点迷，没关系下断动态调试下，发现就是set我们传进去(参数)的如图8所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/8set.png)
-返回往上看看所有的子类，发现是一个镜像操作相关的子类，如图9所示。
+返回往上看看所有的子类，发现是一些镜像操作相关的子类，如图9所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/9.png)
-现在又深入了一点，那么那个传的LinuxUbuntu1404x64是什么个流程呢，我们继续看_set_profile函数如图10所示。
+现在又找到了一点线索，那么传的LinuxUbuntu1404x64是用来干嘛的呢，我们继续看_set_profile函数如图10所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/10set.png)
 又是一个获取子类的操作，下断看看有哪些子类，如图11所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/11.png)
 原来每个profile又是一个类，这里我又有疑问了这个类怎么生成的，因为LinuxUbuntu1404x64名字是我自己取的啊，好了又是到了怎么找这个类的问题，好办下断到找到的地方看看哪个类如图12所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/12.png)
-发现FileAddressSpace类，进入standard源码看看，没什么线索，不要找了思路错了(我找了好久),后面返回到最前面的main函数执行了一句registry.PluginImporter()，然后一路跟到了LinuxProfileFactory，原来他是一个工厂函数遍历所有的profile获取文件名创建一个类出来，下断到这个函数看堆栈如图13所示。
+发现FileAddressSpace类，进入standard源码看看，没什么线索，我找了好久,后面返回到最前面的main函数执行了一句registry.PluginImporter()，然后一路跟到了LinuxProfileFactory，原来他是一个工厂函数遍历所有的profile获取文件名创建一个类出来，下断到这个函数看堆栈如图13所示。
 ![avatar](https://github.com/haidragon/MemoryForensics/blob/master/pages/Chapter1/page4/images/13.png)
-
+那他们是怎么联系起来的呢，我们捋一下，首先我们跟到utils.py文件的load_as函数，然后我们也知道找的是FileAddressSpace类，然而构造函数又调用了BaseAddressSpace类，这个类构造函数里面有个函数_set_profile，好了又回到了原点，我们看_set_profile函数实现，看到了调用registry.get_plugin_classes函数，咦我们刚刚不是回到main函数也看到了registry的PluginImporter函数吗，到这里应该一目了然了，volatility分析先到这里了。
 
