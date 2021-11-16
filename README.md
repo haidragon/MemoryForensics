@@ -1,3 +1,7 @@
+# windows 用法
+```
+volatility_2.6_win64_standalone.exe --plugins=.\creat_profile --profile=LinuxCentOS7-229x64 -f path.vmem linux_netscan
+```
 ## MemoryForensics
 基于 volatility 源码分析
 # 第一章 linux内存取证流程与volatility源码分析
